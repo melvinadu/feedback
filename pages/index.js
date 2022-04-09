@@ -22,10 +22,11 @@ export default function Home() {
   // 4. make the user name look good
   // 5. let the user post their own reply
 
-  let account;
+  const [account, setAccount] = useState("");
 
   const connect = async function() {
-    account = await window.ethereum.request({ method: "eth_requestAccounts" })
+    let account = await window.ethereum.request({ method: "eth_requestAccounts" })
+    setAccount(account);
   };
 
   return (
