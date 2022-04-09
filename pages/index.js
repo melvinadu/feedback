@@ -22,11 +22,15 @@ export default function Home() {
   // 4. make the user name look good
   // 5. let the user post their own reply
 
-  //setup accounts state
+  //setup accounts state for browser based accounts/wallet
   const [accounts, setAccounts] = useState([]);
-
-  //setup logged in or not state
+  //setup logged in or not state for log in functionality
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //setup loading or not state for API requests
+  const [isLoading, setIsLoading] = useState(true);
+  //setup answers state
+  const [answers, setAnswers] = useState([]);
+
 
   //create request to connect to browser based digital wallet
   const connect = async function() {
@@ -58,6 +62,15 @@ export default function Home() {
     window.ethereum.on("accountsChanged", function(a) {
       setAccounts(a);
     })
+
+    //we want to fetch updated data everytime the page loads
+    fetch("/api/answers")
+      //the response will be in JSON so we'll setup a promise with an arrow function in order to handle it
+      .then(response => response.json())
+      //this callback will determine what we want our data to do
+      // our data is within an object and the key is "answers" while the value is "data"
+      // so we are going to update the answers state with the object we're pulling from our API
+      .then(data => { setAnswers(data.answers) })
   }, [])
 
   return (
@@ -101,6 +114,7 @@ export default function Home() {
       </section>
 
       <section className="answers">
+        {answers.length}
         <div className="loading">Loading answers...</div>
       </section>
 
