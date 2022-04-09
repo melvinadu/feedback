@@ -26,7 +26,7 @@ export default function Home() {
   const [accounts, setAccounts] = useState([]);
   //setup logged in or not state for log in functionality
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //setup loading or not state for API requests
+  //setup loading or not state for whether the data is being fetched or not
   const [isLoading, setIsLoading] = useState(true);
   //setup answers state
   const [answers, setAnswers] = useState([]);
@@ -70,8 +70,22 @@ export default function Home() {
       //this callback will determine what we want our data to do
       // our data is within an object and the key is "answers" while the value is "data"
       // so we are going to update the answers state with the object we're pulling from our API
-      .then(data => { setAnswers(data.answers) })
+      .then(data => { 
+        setAnswers(data.answers);
+        //after updating the answers state, we will update the loading state
+        setIsLoading(false);
+      })
   }, [])
+
+  let answersArea = (
+    <div className="loading">Loading answers...</div>
+  )
+
+  if (!isLoading) {
+    answersArea = (
+      <Answer number={"1"} answer={answers[0]} accounts={accounts} isLoggedIn={isLoggedIn} />
+    )
+  }
 
   return (
     <main>
@@ -102,9 +116,9 @@ export default function Home() {
           
           {/* EthName */}
           <div className="eth-name">
-            <img src="https://ipfs.io/ipfs/QmbctVN8tPaDLiLysVDwThf7JTJhMejbSypZ4a3v5H2G3a" alt="Avatar of riklomas.eth" />
+            <img src="" alt="Avatar of melvinadu.eth" />
             <div className="name">
-              <span className="primary">riklomas.eth</span>
+              <span className="primary">melvinadu.eth</span>
               <span className="secondary">0xb25bf3...aaf4</span>
             </div>
           </div>
@@ -114,8 +128,7 @@ export default function Home() {
       </section>
 
       <section className="answers">
-        {answers.length}
-        <div className="loading">Loading answers...</div>
+        {answersArea}
       </section>
 
       <Head>
