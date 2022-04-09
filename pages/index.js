@@ -31,7 +31,7 @@ export default function Home() {
           <input type="text" placeholder="Search" />
         </form>
 
-        <button>Connect</button>
+        <Account />
       </header>
 
       <section className="question">
