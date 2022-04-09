@@ -22,6 +22,8 @@ export default function Home() {
   // 4. make the user name look good
   // 5. let the user post their own reply
 
+  let wallet = "0x11221jonn3213";
+
   return (
     <main>
       <header>
@@ -31,7 +33,7 @@ export default function Home() {
           <input type="text" placeholder="Search" />
         </form>
 
-        <Account />
+        <Account account={""} />
       </header>
 
       <section className="question">
