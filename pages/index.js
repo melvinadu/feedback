@@ -90,7 +90,7 @@ export default function Home() {
   return (
     <main>
       <header>
-        <h1>Potstop</h1>
+        <h1>Feedback</h1>
 
         <form>
           <input type="text" placeholder="Search" />
@@ -132,9 +132,9 @@ export default function Home() {
       </section>
 
       <Head>
-        <title>Looking for feedback as a beginner – Feedback forum – Potstop </title>
-        <meta property="og:title" content="Looking for feedback as a beginner on Potstop" />
-        <meta property="og:description" content="This is a project on the SuperHi Crypto + Web3 for Creatives course" />
+        <title>Looking for feedback as a beginner – Feedback forum – Feedback </title>
+        <meta property="og:title" content="Looking for feedback as a beginner on Feedback Forum" />
+        <meta property="og:description" content="This is a project" />
         <meta property="og:image" content="/social.png" />
       </Head>
     </main>
