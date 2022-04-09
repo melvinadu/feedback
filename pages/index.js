@@ -34,7 +34,8 @@ export default function Home() {
     setAccounts(a);
   };
 
-  //every time the accounts state is changed, this will check whether the accounts state is connected and if so, update the logged in state accordingly
+  //every time the accounts state is changed, this will check whether the accounts state is connected 
+  //and if so, update the logged in state accordingly
   useEffect(function() {
     if (accounts.length > 0) {
       setIsLoggedIn(true);
@@ -43,10 +44,20 @@ export default function Home() {
     }
   }, [accounts]);
 
-  //right now, if the page is reloaded, the page is not reloaded with the currently connected account/wallet in the top right corner, instead the "Connect Wallet" button appears, so in order to check whether an account/wallet is already loaded, we'll use the useEffect function once in order to fix this bug
+  //this function will run once upon load
   useEffect(async function() {
+    //if the page is refreshed, the page is not reloaded with the currently connected account/wallet in the top right corner, 
+    //instead the "Connect Wallet" button appears, so in order to check whether an account/wallet is already loaded, 
+    //we'll use the useEffect function in order to fix this bug
     let a = await window.ethereum.request({ method: "eth_accounts" });
     setAccounts(a);
+
+    //if the currently connected account/wallet is disconnected from within the browser extension, 
+    //there is no indication given to the web application. 
+    //in order to deal with this bug, we'll add an event listener and a callback function to deal with updating the change whenever an account is disconnected
+    window.ethereum.on("accountsChanged", function(a) {
+      setAccounts(a);
+    })
   }, [])
 
   return (
