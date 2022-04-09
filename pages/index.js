@@ -22,7 +22,11 @@ export default function Home() {
   // 4. make the user name look good
   // 5. let the user post their own reply
 
-  let wallet = "0x11221jonn3213";
+  let wallet;
+
+  const connect = function() {
+    window.ethereum.request({ method: "eth_requestAccounts" })
+  };
 
   return (
     <main>
@@ -33,7 +37,7 @@ export default function Home() {
           <input type="text" placeholder="Search" />
         </form>
 
-        <Account account={""} />
+        <Account account={wallet} connect={connect} />
       </header>
 
       <section className="question">
