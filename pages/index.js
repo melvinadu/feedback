@@ -28,13 +28,15 @@ export default function Home() {
   const connect = async function() {
     let a = await window.ethereum.request({ method: "eth_requestAccounts" })
     setAccounts(a);
+  };
 
-    if (a.length > 0) {
+  useEffect(function() {
+    if (accounts.length > 0) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
-  };
+  }, [accounts]);
 
   return (
     <main>
