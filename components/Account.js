@@ -1,6 +1,6 @@
 import EthName from './EthName'
 
-const Account = function ({ account, connect }) {
+const Account = function ({ accounts, isLoggedIn, connect }) {
   // TODO!!!
   // if already logged in, it should show 
   // the EthName component with the correct address
@@ -8,9 +8,9 @@ const Account = function ({ account, connect }) {
   // that when its clicked, will prompt us to login
   // and store the info on the page
 
-  if (account) {
+  if (isLoggedIn) {
     return (
-      <span>{account}</span>
+      <span>{accounts[0]}</span>
     )
   } else {
     return (
