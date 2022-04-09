@@ -83,7 +83,7 @@ export default function Home() {
 
   if (!isLoading) {
     answersArea = answers.map(function(answer, index) {
-      return <Answer number={index + 1} answer={answer} accounts={accounts} isLoggedIn={isLoggedIn} />
+      return <Answer key={index} number={index + 1} answer={answer} accounts={accounts} isLoggedIn={isLoggedIn} />
     })
   }
 
